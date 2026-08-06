@@ -1,0 +1,11 @@
+{
+  "name": "ferris",
+  "description": "Manage Ferris projects, documents, tasks, and knowledge search from your AI assistant.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ferris AI"
+  },
+  "homepage": "https://tryferris.app",
+  "keywords": ["ferris", "project-management", "tasks", "documents", "mcp", "search"],
+  "logo": "assets/logo.svg"
+}

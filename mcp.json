@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "ferris": {
+      "url": "https://api.tryferris.app/ferris/mcp"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ferris",
+  "owner": {
+    "name": "Ferris AI",
+    "email": "support@tryferris.app"
+  },
+  "description": "Manage Ferris projects, documents, tasks, and knowledge search",
+  "plugins": [
+    {
+      "name": "ferris",
+      "source": "./",
+      "description": "Manage Ferris projects, documents, tasks, and knowledge search from your AI assistant.",
+      "homepage": "https://tryferris.app"
+    }
+  ]
+}

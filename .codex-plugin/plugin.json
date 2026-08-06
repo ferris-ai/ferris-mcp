@@ -1,0 +1,26 @@
+{
+  "name": "ferris",
+  "version": "1.0.0",
+  "description": "Manage Ferris projects, documents, tasks, and knowledge search from your AI assistant.",
+  "author": {
+    "name": "Ferris AI",
+    "email": "support@tryferris.app",
+    "url": "https://tryferris.app"
+  },
+  "homepage": "https://tryferris.app",
+  "license": "MIT",
+  "keywords": ["ferris", "project-management", "tasks", "documents", "mcp", "search"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Ferris",
+    "shortDescription": "Manage projects, documents, tasks, and search project knowledge.",
+    "longDescription": "Connect your AI assistant to Ferris for project management — search project knowledge, manage tasks, browse documents, and track project activity.",
+    "developerName": "Ferris AI",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://tryferris.app",
+    "brandColor": "#F97316",
+    "logo": "./assets/logo.svg"
+  }
+}
