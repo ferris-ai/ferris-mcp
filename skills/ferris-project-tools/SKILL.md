@@ -1,6 +1,6 @@
 ---
 name: ferris-project-tools
-description: Manage Ferris projects, documents, tasks, and search project knowledge. Use when working with client projects, tracking tasks, reviewing documents, or searching project context.
+description: Manage Ferris projects, documents, tasks, and search project or Ferris product knowledge. Use when working with client projects, tracking tasks, reviewing documents, searching project context, or answering how Ferris itself works.
 ---
 
 # Ferris Project Tools
@@ -11,6 +11,8 @@ Use the Ferris MCP tools to manage projects, search knowledge, track tasks, and 
 
 - Managing client engagement projects (create, update, archive)
 - Searching project knowledge bases for meeting notes, documents, and context
+- Answering how Ferris itself works (Inbox, Tasks, Chat, client portal, magic links, meetings, knowledge, sync, workflows, agents, integrations) via `search_software_context` with bank `ferris-documentation`
+- Looking up third-party platform docs (Qualtrics, EngineHire, and others) attached to a project
 - Creating, updating, or tracking tasks across projects
 - Browsing or reading project documents and their summaries
 - Looking up project team members and actors for task assignment
@@ -24,7 +26,13 @@ Most tools require a `project_id`. Start by listing projects to get the ID, then
 2. `list_projects` -- find the project (optionally filter by name)
 3. Use `project_id` with all other tools
 
-When searching for information, prefer `search_project_context` before asking the user -- the knowledge base often has the answer.
+When searching for information, prefer the right search tool before asking the user:
+
+- Client engagement knowledge (meetings, decisions, SOW, people, project documents) → `search_project_context`
+- How Ferris itself works → `search_software_context` with `bank: "ferris-documentation"`
+- How a connected platform works (Qualtrics, EngineHire, etc.) → `search_software_context` with that bank's internal name
+
+Do not use `search_software_context` for what happened on an engagement. Do not use `search_project_context` as a substitute for Ferris product how-to.
 
 ## Tool Reference
 
@@ -74,8 +82,20 @@ Use `list_tasks` for filtering by status/assignee/epic. Use `search_tasks` when 
 | Tool | Required | Optional | Description |
 | ---- | -------- | -------- | ----------- |
 | `search_project_context` | `project_id`, `query` | `document_ids`, `limit` | Semantic search over project knowledge |
+| `search_software_context` | `project_id`, `query`, `bank` | `limit` | Search software platform documentation enabled on the project |
 
 `search_project_context` searches across all project knowledge -- meetings, documents, notes. Use `document_ids` to scope results to specific documents (get IDs from `list_documents` first).
+
+`search_software_context` searches a software bank attached to that project:
+
+- `bank: "ferris-documentation"` — Ferris product how-to (Inbox, Tasks, Chat, client portal, magic links, meetings, knowledge, sync, workflows, agents, integrations)
+- Other banks (`qualtrics`, `enginehire`, …) — third-party platform documentation enabled on the project
+
+If the bank is not enabled on the project, the tool returns the banks that are.
+
+**Ferris documentation is internal.** Use the facts in your answer. Do not cite Ferris wiki pages, do not include Internal Portal URLs, and do not mention `ferris-documentation` to the user. Third-party banks may include `source_url` and can be cited.
+
+Ask complete questions, not keywords. If a Ferris how-to hit is a hub/overview page, run one follow-up `search_software_context` query for the related topic (depth 2). Do not crawl the whole wiki.
 
 ### People
 
@@ -101,6 +121,18 @@ Use `list_project_actors` with `filter_valid_assignees=true` to get actor UUIDs 
   "query": "What were the key decisions from the kickoff meeting?"
 } }
 ```
+
+### Look up how Ferris itself works
+
+```json
+{ "tool": "search_software_context", "arguments": {
+  "project_id": "<id>",
+  "query": "How do magic links work for the client portal?",
+  "bank": "ferris-documentation"
+} }
+```
+
+Do not put Ferris wiki pages or Internal Portal URLs in the answer's sources.
 
 ### Create a task from discovered context
 

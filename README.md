@@ -1,10 +1,10 @@
 # Ferris
 
-Manage [Ferris](https://tryferris.app) projects, documents, tasks, and knowledge search from your AI assistant. This plugin connects your coding agent to the Ferris MCP server, giving it access to 22 project management tools.
+Manage [Ferris](https://tryferris.app) projects, documents, tasks, and knowledge search from your AI assistant. This plugin connects your coding agent to the Ferris MCP server, giving it access to 23 project management tools.
 
 ## What It Does
 
-Gives your AI agent access to Ferris project tools — search project knowledge bases, manage tasks, browse documents, review team members, and track project activity. All operations are scoped to projects you have access to via your Ferris account.
+Gives your AI agent access to Ferris project tools — search project knowledge bases, look up Ferris product how-to and other software docs, manage tasks, browse documents, review team members, and track project activity. All operations are scoped to projects you have access to via your Ferris account.
 
 ## Install
 
@@ -113,6 +113,7 @@ This MCP server uses OAuth 2.1. On first connection, your AI assistant will prom
 | Tool | Description |
 |------|-------------|
 | `search_project_context` | Semantic search over project knowledge (meetings, documents, notes) |
+| `search_software_context` | Search software docs on a project (`ferris-documentation` for Ferris how-to; other banks for Qualtrics/EngineHire/etc.) |
 
 ### People
 
