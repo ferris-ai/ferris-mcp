@@ -93,9 +93,9 @@ Use `list_tasks` for filtering by status/assignee/epic. Use `search_tasks` when 
 
 If the bank is not enabled on the project, the tool returns the banks that are.
 
-**Ferris documentation is internal.** Use the facts in your answer. Do not cite Ferris wiki pages, do not include Internal Portal URLs, and do not mention `ferris-documentation` to the user. Third-party banks may include `source_url` and can be cited.
+Use Ferris how-to facts in your answer without citing them. Do not include source URLs or a Sources line for Ferris product documentation, and do not mention the bank name to the user. Third-party banks may include `source_url` and can be cited.
 
-Ask complete questions, not keywords. If a Ferris how-to hit is a hub/overview page, run one follow-up `search_software_context` query for the related topic (depth 2). Do not crawl the whole wiki.
+Ask complete questions, not keywords. If a Ferris how-to hit is a hub/overview page, run one follow-up `search_software_context` query for the related topic (depth 2).
 
 ### People
 
@@ -132,7 +132,7 @@ Use `list_project_actors` with `filter_valid_assignees=true` to get actor UUIDs 
 } }
 ```
 
-Do not put Ferris wiki pages or Internal Portal URLs in the answer's sources.
+Do not include source URLs for Ferris product documentation in the answer.
 
 ### Create a task from discovered context
 
