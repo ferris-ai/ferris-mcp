@@ -70,12 +70,19 @@ Do not use `search_software_context` for what happened on an engagement. Do not 
 | `update_task` | `project_id`, `task_id` | `title`, `description`, `status`, `priority`, `epic_id`, `assignee_ids`, `due_date`, `start_date`, `metadata`, `work_summary` | Update task fields |
 | `delete_task` | `project_id`, `task_id` | -- | Soft-delete (cancel) a task |
 | `list_task_changes` | `project_id`, `task_id` | `since`, `limit`, `offset` | View task change history (audit log) |
+| `create_task_comment` | `project_id`, `task_id`, `body` | `parent_comment_id`, `mention_actor_ids`, `metadata` | Post a comment on a task |
+| `update_task_comment` | `project_id`, `comment_id`, `body` | -- | Edit a comment you authored |
+| `delete_task_comment` | `project_id`, `comment_id` | -- | Delete a comment you authored |
 
 Task statuses: `backlog`, `pending`, `in_progress`, `review`, `blocked`, `completed`, `cancelled`.
 
 Priority levels: `critical`, `high`, `medium`, `low`.
 
 Use `list_tasks` for filtering by status/assignee/epic. Use `search_tasks` when you need keyword matching in title and description.
+
+`create_task_comment` posts a comment. Pass `parent_comment_id` from `list_task_comments` to reply in a thread. Pass `mention_actor_ids` from `list_project_actors` to @-mention someone, and include matching `@[<actor_id>]` tokens in `body`.
+
+`update_task_comment` and `delete_task_comment` only change comments you authored. Get `comment_id` from `list_task_comments`. Permission and questionnaire comments cannot be edited or deleted.
 
 ### Search
 
