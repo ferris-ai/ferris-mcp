@@ -1,6 +1,6 @@
 # Ferris
 
-Manage [Ferris](https://tryferris.app) projects, documents, tasks, and knowledge search from your AI assistant. This plugin connects your coding agent to the Ferris MCP server, giving it access to 23 project management tools.
+Manage [Ferris](https://tryferris.app) projects, documents, tasks, and knowledge search from your AI assistant. This plugin connects your coding agent to the Ferris MCP server, giving it access to 26 project management tools.
 
 ## What It Does
 
@@ -107,6 +107,9 @@ This MCP server uses OAuth 2.1. On first connection, your AI assistant will prom
 | `update_task` | Update task fields (status, priority, description, etc.) |
 | `delete_task` | Soft-delete (cancel) a task |
 | `list_task_changes` | View task change history (audit log) |
+| `create_task_comment` | Post a comment on a task (optional reply and @-mentions) |
+| `update_task_comment` | Edit the body of a comment you authored |
+| `delete_task_comment` | Delete a comment you authored |
 
 ### Search
 
