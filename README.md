@@ -1,152 +1,227 @@
 # Ferris
 
-Manage [Ferris](https://tryferris.app) projects, documents, tasks, and knowledge search from your AI assistant. This plugin connects your coding agent to the Ferris MCP server, giving it access to 26 project management tools.
+Work with your [Ferris](https://tryferris.app) projects from your AI assistant. Ferris tracks delivery projects: tasks, issues, epics, requirements, documents, meetings, and client contacts. This plugin connects your assistant to the Ferris MCP server, so it can find what changed for you, search project knowledge, and create or update tasks.
 
-## What It Does
-
-Gives your AI agent access to Ferris project tools — search project knowledge bases, look up Ferris product how-to and other software docs, manage tasks, browse documents, review team members, and track project activity. All operations are scoped to projects you have access to via your Ferris account.
+Every call runs as your Ferris account. The assistant can only see and change projects that you can see and change in Ferris.
 
 ## Install
 
-### Claude.ai
+The Ferris MCP server URL is:
 
-1. Go to **Settings > Connectors > Add custom connector**
-2. Paste the server URL: `https://api.tryferris.app/ferris/mcp`
-3. Complete the OAuth flow to connect your Ferris account
+```
+https://api.tryferris.app/ferris/mcp
+```
 
-Requires a Claude Pro, Max, Team, or Enterprise plan.
-
-### ChatGPT
-
-1. Go to **Settings > MCP** (or search for MCP servers)
-2. Add a custom MCP server with the URL: `https://api.tryferris.app/ferris/mcp`
-3. Complete the OAuth flow to connect your Ferris account
-
-### Cursor
-
-**One-click install:**
-
-[Install Ferris in Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=ferris&config=eyJ1cmwiOiJodHRwczovL2FwaS50cnlmZXJyaXMuYXBwL2ZlcnJpcy9tY3AifQ%3D%3D)
-
-Or install from the Cursor Marketplace: search for "ferris" in Customize.
+Each option below connects to that server. On the first connection, your assistant opens a browser window to sign in to Ferris (see [Authentication](#authentication)).
 
 ### Claude Code
 
-**Via plugin marketplace:**
+Install the plugin, which adds the MCP server and the Ferris skills:
+
+```
+/plugin install ferris --marketplace https://github.com/ferris-ai/ferris-mcp.git
+```
+
+On Claude Code versions before 2.1.275, add the marketplace first:
 
 ```
 /plugin marketplace add ferris-ai/ferris-mcp
-/plugin install ferris-mcp@ferris
+/plugin install ferris@ferris
 ```
 
-**Or add the MCP server directly:**
+Or add only the MCP server:
 
 ```bash
 claude mcp add --transport http --scope user ferris https://api.tryferris.app/ferris/mcp
 ```
 
-Then authenticate by running `/mcp` in a Claude Code session and completing the OAuth flow.
+Then run `/mcp` in a Claude Code session and sign in.
 
 ### Codex
 
-**Via plugin directory:**
-
-Install from the Codex Plugin Directory, or add the marketplace:
+Install the plugin:
 
 ```bash
-codex plugin marketplace add ferris-ai/ferris-mcp
+codex plugin marketplace add https://github.com/ferris-ai/ferris-mcp.git
+codex plugin add ferris@ferris
 ```
 
-**Or add the MCP server directly:**
+Or add only the MCP server, then sign in:
 
 ```bash
 codex mcp add ferris --url https://api.tryferris.app/ferris/mcp
 ```
 
-Then authenticate:
-
 ```bash
 codex mcp login ferris
 ```
 
+### Cursor
+
+[Install Ferris in Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=ferris&config=eyJ1cmwiOiJodHRwczovL2FwaS50cnlmZXJyaXMuYXBwL2ZlcnJpcy9tY3AifQ%3D%3D) (opens Cursor and adds the MCP server).
+
+### Claude and ChatGPT
+
+Add a custom connector with the server URL above, then sign in to Ferris when asked. Custom connectors depend on your plan and workspace settings.
+
 ## Authentication
 
-This MCP server uses OAuth 2.1. On first connection, your AI assistant will prompt you to authenticate with your Ferris account. The OAuth flow opens your browser, you log in (or confirm if already logged in), and the token is stored automatically.
+The server uses OAuth 2.1. Your assistant opens a browser window, you sign in to Ferris (or confirm if you are already signed in), and the assistant stores the token. You can sign in with Google, an email magic link, or an email and password if your account has one.
 
-## Tool Reference
+## Skills
 
-### Organizations and Projects
+| Skill | What it does |
+| ----- | ------------ |
+| `/ferris:whats-next` | Looks at what changed for you in the last few days and proposes concrete next tasks. |
+| `ferris-project-tools` | Guidance the assistant uses when it works with Ferris projects, tasks, documents, and search. |
 
-| Tool | Description |
-|------|-------------|
-| `list_organizations` | List all organizations the user belongs to with roles |
-| `list_projects` | List accessible projects, optionally filter by name |
-| `get_project` | Get full details of a project by ID |
-| `create_project` | Create a new project in an organization |
-| `update_project` | Update project name, description, or language |
-| `archive_project` | Soft-delete a project (can be restored) |
-| `delete_project` | Permanently delete a project (irreversible) |
+## Example prompts
 
-### Documents
+- "What's new for me in Ferris this week?"
+- "Summarize the open tasks on the Acme rollout project and who owns each one."
+- "Search the Acme project for the decisions from last week's kickoff."
+- "Create a task on the Acme project to send the API keys, due Friday, assigned to me."
 
-| Tool | Description |
-|------|-------------|
-| `list_documents` | List document metadata with optional filters |
-| `get_document` | Get full metadata for a specific document |
-| `get_document_content` | Get the full text content of a document |
-| `get_document_summary` | Get AI-generated summary of a document |
+## Tool reference
 
-### Tasks
+Tools marked **Write (destructive)** delete, cancel, remove, overwrite, or send something that cannot be taken back. Most assistants ask you to confirm before they run them.
 
-| Tool | Description |
-|------|-------------|
-| `list_tasks` | List tasks with status, assignee, and epic filters |
-| `search_tasks` | Full-text search tasks by keyword |
-| `get_task` | Get full task details including assignees |
-| `create_task` | Create a new task with title, priority, assignees, dates |
-| `update_task` | Update task fields (status, priority, description, etc.) |
-| `delete_task` | Soft-delete (cancel) a task |
-| `list_task_changes` | View task change history (audit log) |
-| `create_task_comment` | Post a comment on a task (optional reply and @-mentions) |
-| `update_task_comment` | Edit the body of a comment you authored |
-| `delete_task_comment` | Delete a comment you authored |
+### Your updates
 
-### Search
+| Tool | Access | What it does |
+| ---- | ------ | ------------ |
+| `list_my_recent_updates` | Read | List what changed for you in Ferris over the last few days, across your projects: tasks assigned to you, changes and new comments on your open tasks, @-mentions of you, client questions you own, tasks that were unblocked, and action items from recent meetings. |
 
-| Tool | Description |
-|------|-------------|
-| `search_project_context` | Semantic search over project knowledge (meetings, documents, notes) |
-| `search_software_context` | Search software docs on a project (`ferris-documentation` for Ferris how-to; other banks for Qualtrics/EngineHire/etc.) |
+### Organizations and projects
 
-### People
+| Tool | Access | What it does |
+| ---- | ------ | ------------ |
+| `list_organizations` | Read | List all organizations the authenticated user belongs to, including the user's role in each. |
+| `list_projects` | Read | List the projects you can see, with each project's id, name, description, organization, and client account. |
+| `get_project` | Read | Get full details of a specific project by ID. |
+| `update_project` | Write (destructive) | Update a project's fields. |
 
-| Tool | Description |
-|------|-------------|
-| `list_project_members` | List human team members with names, emails, roles |
-| `list_project_actors` | List all actors (members, contacts, agents) for task assignment |
-| `list_task_comments` | List comments on a task with threaded replies |
+### Project team
 
-See `skills/ferris-project-tools/SKILL.md` for detailed usage guidance and workflow examples.
+| Tool | Access | What it does |
+| ---- | ------ | ------------ |
+| `list_project_members` | Read | People on the project team: name, email, and role. |
+| `list_project_actors` | Read | People and agents you can assign or mention. |
+| `list_project_contacts` | Read | Account contacts placed on this project. |
+| `add_project_member` | Write | Put an organization member on a project with their org title, and set up their assistant. |
+| `remove_project_member` | Write (destructive) | Take a member off a project. |
+| `add_project_contact` | Write | Place an existing account contact on a project. |
+| `update_project_contact` | Write (destructive) | Change a contact's role or primary flag on one project. |
+| `remove_project_contact` | Write (destructive) | Take a contact off a project. |
 
-## Plugin Structure
+### Tasks and issues
+
+| Tool | Access | What it does |
+| ---- | ------ | ------------ |
+| `list_tasks` | Read | List tasks on a project, filtered by status, epic, assignee, or kind (general, issue, or administrative). |
+| `search_tasks` | Read | Search a project's board tasks by keyword in their title and description. |
+| `get_task` | Read | Get details for a single task including assignees. |
+| `create_task` | Write | Create a board task on a project. |
+| `update_task` | Write (destructive) | Change a task. |
+| `delete_task` | Write (destructive) | Cancel a task. |
+| `list_issues` | Read | List issue tasks for a project. |
+| `get_issue` | Read | One issue. |
+| `list_task_attachments` | Read | List a task's attachments: reference files, drafts, and published deliverables. |
+| `get_attachment_download_url` | Read | Get a short-lived download link for one task attachment. |
+
+### Task comments
+
+| Tool | Access | What it does |
+| ---- | ------ | ------------ |
+| `list_task_comments` | Read | List the note comments on a task, oldest first, with threaded replies and @-mentions. |
+| `create_task_comment` | Write | Post a note comment on a task. |
+| `update_task_comment` | Write (destructive) | Edit the body of a note comment you authored. |
+| `delete_task_comment` | Write (destructive) | Delete a note comment you authored, including its @-mentions. |
+
+### Epics and requirements
+
+| Tool | Access | What it does |
+| ---- | ------ | ------------ |
+| `list_epics` | Read | Epics (deliverables) on a project, each with the requirement_ids it satisfies. |
+| `get_epic` | Read | Get one epic on a project, with the requirement_ids it satisfies. |
+| `create_epic` | Write | Create an epic (a deliverable) on a project. |
+| `update_epic` | Write (destructive) | Change an epic. |
+| `delete_epic` | Write (destructive) | Cancel an epic. |
+| `list_requirements` | Read | List the project's requirements: the conditions the delivered result must meet. |
+| `bulk_create_requirements` | Write | Create requirements on a project (1-50). |
+| `update_requirement` | Write (destructive) | Change a requirement. |
+| `delete_requirement` | Write (destructive) | Delete a requirement and its epic links. |
+
+### Documents and search
+
+| Tool | Access | What it does |
+| ---- | ------ | ------------ |
+| `list_documents` | Read | List documents (metadata only, no content). |
+| `get_document` | Read | Get one document's metadata by id: filename, display_name, document_type, processing status, file_size, mime_type, its external link, a summary when one exists, and when it was added and processed. |
+| `get_document_summary` | Read | Get a single document's AI-generated summary and metadata (works for both project and org-level documents). |
+| `upload_document` | Write | Upload a file to a project or an organization and start processing. |
+| `list_generated_artifacts` | Read | List the documents Ferris produced and published to the Project Library, newest first. |
+| `get_artifact_download_url` | Read | Get a short-lived download link for a generated artifact. |
+| `search_project_context` | Read | Semantic search over a project's knowledge base. |
+| `search_software_context` | Read | Search a software platform's documentation for this project. |
+
+### Meetings
+
+| Tool | Access | What it does |
+| ---- | ------ | ------------ |
+| `add_ferris_to_meeting` | Write | Send Ferris to a Meet, Zoom, or Teams call to capture the transcript. |
+
+### Client accounts and contacts
+
+| Tool | Access | What it does |
+| ---- | ------ | ------------ |
+| `list_accounts` | Read | List client companies (accounts) in an organization. |
+| `get_account` | Read | One client company (account). |
+| `create_account` | Write | Create a client company (account) in an organization. |
+| `update_account` | Write (destructive) | Change a client company. |
+| `list_account_contacts` | Read | People who belong to a client company. |
+| `get_account_contact` | Read | One person on a client company. |
+| `create_account_contact` | Write | Add a person to a client company. |
+| `update_account_contact` | Write (destructive) | Change a person on a client company. |
+
+### Organization members and labels
+
+| Tool | Access | What it does |
+| ---- | ------ | ------------ |
+| `list_org_members` | Read | People in an organization: user_id, name, email, org role (owner, admin, member, viewer), and title. |
+| `update_org_member` | Write (destructive) | Change a person's org role or title. |
+| `invite_org_member` | Write (destructive) | Email an invitation to join the organization. |
+| `list_org_invitations` | Read | Invitations that have not been accepted yet. |
+| `revoke_org_invitation` | Write (destructive) | Withdraw an invitation that has not been accepted. |
+| `list_org_labels` | Read | Labels an organization defines. |
+| `create_org_label` | Write | Add a label to an organization. |
+| `update_org_label` | Write (destructive) | Rename or restyle a label. |
+| `archive_org_label` | Write (destructive) | Hide a label from pickers. |
+
+See [skills/ferris-project-tools/SKILL.md](skills/ferris-project-tools/SKILL.md) for each tool's inputs and example workflows.
+
+## Plugin structure
 
 ```
 ferris-mcp-plugins/
-├── .cursor-plugin/plugin.json     # Cursor plugin manifest
 ├── .claude-plugin/
 │   ├── plugin.json                # Claude Code plugin manifest
-│   └── marketplace.json           # Claude Code marketplace catalog
-├── .codex-plugin/plugin.json      # OpenAI Codex plugin manifest
+│   └── marketplace.json           # Marketplace catalog (Claude Code and Codex)
+├── .codex-plugin/plugin.json      # Codex plugin manifest
+├── .cursor-plugin/plugin.json     # Cursor plugin manifest
 ├── skills/
-│   └── ferris-project-tools/
-│       └── SKILL.md               # Agent skill with workflow guidance
-├── mcp.json                       # Cursor MCP server config
-├── .mcp.json                      # Claude Code / Codex MCP server config
+│   ├── ferris-project-tools/
+│   │   └── SKILL.md               # Tool guidance and workflows
+│   └── whats-next/
+│       └── SKILL.md               # /ferris:whats-next
+├── .mcp.json                      # MCP server config (Claude Code, Codex)
+├── mcp.json                       # MCP server config (Cursor)
 ├── assets/
-│   └── logo.svg                   # Plugin logo
+│   └── logo.svg
+├── LICENSE
 └── README.md
 ```
 
 ## License
 
-MIT
+MIT. See [LICENSE](LICENSE).

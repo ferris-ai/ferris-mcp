@@ -1,7 +1,7 @@
 {
   "name": "ferris",
-  "description": "Manage Ferris projects, documents, tasks, and knowledge search from your AI assistant.",
-  "version": "1.0.0",
+  "description": "Work with your Ferris projects, tasks, documents, and meetings from your AI assistant.",
+  "version": "1.1.0",
   "author": {
     "name": "Ferris AI"
   }
