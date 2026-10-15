@@ -1,25 +1,43 @@
 {
   "name": "ferris",
-  "version": "1.0.0",
-  "description": "Manage Ferris projects, documents, tasks, and knowledge search from your AI assistant.",
+  "version": "1.1.0",
+  "description": "Work with your Ferris projects, tasks, documents, and meetings from your AI assistant.",
   "author": {
     "name": "Ferris AI",
-    "email": "support@tryferris.app",
+    "email": "support@tryferris.ai",
     "url": "https://tryferris.app"
   },
   "homepage": "https://tryferris.app",
   "license": "MIT",
-  "keywords": ["ferris", "project-management", "tasks", "documents", "mcp", "search"],
+  "keywords": [
+    "ferris",
+    "project-management",
+    "tasks",
+    "documents",
+    "meetings",
+    "mcp",
+    "search"
+  ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Ferris",
-    "shortDescription": "Manage projects, documents, tasks, and search project knowledge.",
-    "longDescription": "Connect your AI assistant to Ferris for project management — search project knowledge, manage tasks, browse documents, and track project activity.",
+    "shortDescription": "See what changed for you, search project knowledge, and manage tasks.",
+    "longDescription": "Connect your AI assistant to Ferris. Find what changed for you across your projects, search meeting notes and documents, and create or update tasks, issues, and epics. Every call runs as your Ferris account.",
     "developerName": "Ferris AI",
     "category": "Productivity",
-    "capabilities": ["Read", "Write"],
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://tryferris.app",
+    "privacyPolicyURL": "https://tryferris.ai/legal/privacy-policy",
+    "termsOfServiceURL": "https://tryferris.ai/legal/terms-of-service",
+    "defaultPrompt": [
+      "What's new for me in Ferris this week?",
+      "What should I work on next in Ferris?",
+      "Summarize the open tasks on my Ferris projects and who owns each one."
+    ],
     "brandColor": "#F97316",
     "logo": "./assets/logo.svg"
   }
