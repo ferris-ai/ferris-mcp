@@ -9,7 +9,7 @@
     {
       "name": "ferris",
       "source": "./",
-      "description": "Work with your Ferris projects, tasks, documents, and meetings from your AI assistant.",
+      "description": "Ferris acts as your project manager for delivery work, managing tasks, changes, and meetings to keep you on track.",
       "homepage": "https://tryferris.app"
     }
   ]

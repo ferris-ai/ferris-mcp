@@ -1,8 +1,23 @@
 {
   "name": "ferris",
-  "description": "Work with your Ferris projects, tasks, documents, and meetings from your AI assistant.",
+  "displayName": "Ferris",
+  "description": "Ferris acts as your project manager for delivery work, managing tasks, changes, and meetings to keep you on track.",
   "version": "1.1.0",
   "author": {
-    "name": "Ferris AI"
-  }
+    "name": "Ferris AI",
+    "email": "support@tryferris.ai",
+    "url": "https://tryferris.ai"
+  },
+  "homepage": "https://tryferris.ai",
+  "repository": "https://github.com/ferris-ai/ferris-mcp",
+  "license": "MIT",
+  "keywords": [
+    "ferris",
+    "project-management",
+    "tasks",
+    "documents",
+    "meetings",
+    "mcp",
+    "search"
+  ]
 }
