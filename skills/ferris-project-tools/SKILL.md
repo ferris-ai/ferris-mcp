@@ -92,7 +92,7 @@ Use Ferris how-to facts in your answer without citing them, and do not mention t
 | `get_task` | `project_id`, `task_id` | -- |
 | `create_task` | `project_id`, `title` | `status`, `description`, `priority`, `epic_id`, `assignees`, `estimated_days`, `due_date`, `start_date`, `portal_task_state`, `kind` |
 | `update_task` | `project_id`, `task_id` | `title`, `description`, `status`, `priority`, `epic_id`, `assignee_ids`, `assignees`, `estimated_days`, `due_date`, `start_date`, `resolution`, `portal_task_state` |
-| `delete_task` | `project_id`, `task_id` | -- |
+| `cancel_task` | `project_id`, `task_id` | -- |
 | `list_issues` | `project_id` | `status`, `limit`, `offset` |
 | `get_issue` | `project_id`, `issue_id` | -- |
 | `list_task_attachments` | `project_id`, `task_id` | -- |
@@ -115,7 +115,7 @@ Use Ferris how-to facts in your answer without citing them, and do not mention t
 | `get_epic` | `project_id`, `epic_id` | -- |
 | `create_epic` | `project_id`, `title` | `status`, `description`, `priority`, `requirement_ids`, `start_date`, `due_date`, `assignees` |
 | `update_epic` | `project_id`, `epic_id` | `title`, `description`, `status`, `priority`, `requirement_ids`, `start_date`, `due_date`, `assignees` |
-| `delete_epic` | `project_id`, `epic_id` | -- |
+| `cancel_epic` | `project_id`, `epic_id` | -- |
 | `list_requirements` | `project_id` | `status`, `uncovered_only`, `limit`, `offset` |
 | `bulk_create_requirements` | `project_id`, `items` | -- |
 | `update_requirement` | `project_id`, `requirement_id` | `title`, `description`, `requirement_type`, `status`, `acceptance_criteria`, `source`, `sort_order`, `assignees` |
