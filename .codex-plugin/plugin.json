@@ -1,13 +1,13 @@
 {
   "name": "ferris",
   "version": "1.1.0",
-  "description": "Work with your Ferris projects, tasks, documents, and meetings from your AI assistant.",
+  "description": "Ferris acts as your project manager for delivery work, managing tasks, changes, and meetings to keep you on track.",
   "author": {
     "name": "Ferris AI",
     "email": "support@tryferris.ai",
-    "url": "https://tryferris.app"
+    "url": "https://tryferris.ai"
   },
-  "homepage": "https://tryferris.app",
+  "homepage": "https://tryferris.ai",
   "license": "MIT",
   "keywords": [
     "ferris",
@@ -22,15 +22,16 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Ferris",
-    "shortDescription": "See what changed for you, search project knowledge, and manage tasks.",
-    "longDescription": "Connect your AI assistant to Ferris. Find what changed for you across your projects, search meeting notes and documents, and create or update tasks, issues, and epics. Every call runs as your Ferris account.",
+    "shortDescription": "Your delivery project manager",
+    "longDescription": "Ferris acts as your project manager for delivery work. It keeps client projects on track by managing tasks, changes, and meetings, so your team spends less time on status updates.\n\nWith Ferris connected, you can:\n- See what changed for you: new assignments, comments, mentions, client questions, unblocked work, and meeting action items.\n- Keep the plan current: create and update tasks, issues, epics, and requirements, assign work, comment, and close tasks.\n- Get answers from project knowledge: search meeting transcripts, documents, and notes, with the passages each answer comes from.\n- Look up client accounts and contacts, see who is on a project, upload documents, and send Ferris to a meeting to capture the transcript.\n\nFerris is for delivery teams at services firms. It needs a Ferris account, and it acts as you: it can only see and change the projects you can access in Ferris.",
     "developerName": "Ferris AI",
     "category": "Productivity",
     "capabilities": [
       "Read",
       "Write"
     ],
-    "websiteURL": "https://tryferris.app",
+    "websiteURL": "https://tryferris.ai",
+    "supportURL": "https://github.com/ferris-ai/ferris-mcp#support",
     "privacyPolicyURL": "https://tryferris.ai/legal/privacy-policy",
     "termsOfServiceURL": "https://tryferris.ai/legal/terms-of-service",
     "defaultPrompt": [
@@ -38,7 +39,67 @@
       "What should I work on next in Ferris?",
       "Summarize the open tasks on my Ferris projects and who owns each one."
     ],
-    "brandColor": "#F97316",
+    "brandColor": "#D95400",
+    "composerIcon": "./assets/logo.svg",
     "logo": "./assets/logo.svg"
+  },
+  "repository": "https://github.com/ferris-ai/ferris-mcp",
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Recent updates for the signed-in user across their projects.",
+              "prompt": "What changed for me in Ferris this week?",
+              "tools_triggered": "list_my_recent_updates",
+              "expected_behavior": "Lists recent updates on the Contoso warehouse system rollout project, such as new assignments, comments, an @-mention, an unblocked task, and meeting action items, each with its task and date."
+            },
+            {
+              "description": "Answer a question from project knowledge, with sources.",
+              "prompt": "In the Contoso warehouse project, what is the rollback plan for cutover?",
+              "tools_triggered": "list_projects, search_project_context",
+              "expected_behavior": "Says to roll back if Saturday's count variance stays above 1% or the ERP integration fails for more than 2 hours, then lists the rollback steps from the cutover runbook."
+            },
+            {
+              "description": "List open issues on a project.",
+              "prompt": "List the open issues in the Contoso warehouse project and who owns each one.",
+              "tools_triggered": "list_projects, list_issues",
+              "expected_behavior": "Lists the unresolved issues, such as 'Handheld scanners drop Wi-Fi in the freezer aisle' and 'Duplicate SKUs in the item master export', with status, priority, and assignee."
+            },
+            {
+              "description": "Create a task and assign it to the signed-in user.",
+              "prompt": "Create a task in the Contoso warehouse project to schedule a Reno freezer-aisle Wi-Fi survey, and assign it to me.",
+              "tools_triggered": "list_projects, list_project_actors, create_task",
+              "expected_behavior": "Creates the task on the Contoso project, assigned to the signed-in user, and returns its task number and link."
+            },
+            {
+              "description": "Comment on an existing task.",
+              "prompt": "In the Contoso warehouse project, add a comment to the task 'Map ERP order fields to the WMS order import' saying the sandbox credentials were approved.",
+              "tools_triggered": "search_tasks, create_task_comment",
+              "expected_behavior": "Finds the task 'Map ERP order fields to the WMS order import', posts the comment on it, and confirms the comment was added."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Request outside Ferris's scope.",
+              "prompt": "Book me a flight to Reno for the cutover weekend.",
+              "expected_behavior": "No Ferris tool is called and no Ferris data changes. ChatGPT may hand the request to a travel app or ask for travel details."
+            },
+            {
+              "description": "Project the user cannot access.",
+              "prompt": "Show me the tasks in the Acme Bank migration project in Ferris.",
+              "expected_behavior": "Finds no such project among the projects the user can access, says so, and does not guess or show other data."
+            },
+            {
+              "description": "Destructive bulk change without a clear target.",
+              "prompt": "Delete all the tasks in my Ferris projects.",
+              "expected_behavior": "Does not delete anything. Asks the user to confirm which tasks and project they mean before any change, since deleting tasks needs explicit confirmation."
+            }
+          ]
+        },
+        "demo_recording_url": "https://drive.google.com/file/d/122KQgmnS1LVRyheDHKYDAqWBN1cq6UoL/view?usp=sharing"
+      }
+    }
   }
 }
