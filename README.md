@@ -123,7 +123,7 @@ Tools marked **Write (destructive)** delete, cancel, remove, overwrite, or send 
 | `get_task` | Read | Get details for a single task including assignees. |
 | `create_task` | Write | Create a board task on a project. |
 | `update_task` | Write (destructive) | Change a task. |
-| `delete_task` | Write (destructive) | Cancel a task. |
+| `cancel_task` | Write (destructive) | Cancel a task. It stays in Ferris with status `cancelled`. |
 | `list_issues` | Read | List issue tasks for a project. |
 | `get_issue` | Read | One issue. |
 | `list_task_attachments` | Read | List a task's attachments: reference files, drafts, and published deliverables. |
@@ -146,7 +146,7 @@ Tools marked **Write (destructive)** delete, cancel, remove, overwrite, or send 
 | `get_epic` | Read | Get one epic on a project, with the requirement_ids it satisfies. |
 | `create_epic` | Write | Create an epic (a deliverable) on a project. |
 | `update_epic` | Write (destructive) | Change an epic. |
-| `delete_epic` | Write (destructive) | Cancel an epic. |
+| `cancel_epic` | Write (destructive) | Cancel an epic. Its tasks stay and lose the epic link. |
 | `list_requirements` | Read | List the project's requirements: the conditions the delivered result must meet. |
 | `bulk_create_requirements` | Write | Create requirements on a project (1-50). |
 | `update_requirement` | Write (destructive) | Change a requirement. |
