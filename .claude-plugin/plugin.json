@@ -10,7 +10,11 @@
   },
   "homepage": "https://tryferris.ai",
   "repository": "https://github.com/ferris-ai/ferris-mcp",
+  "icon": "./assets/logo.svg",
+  "documentationUrl": "https://github.com/ferris-ai/ferris-mcp#readme",
+  "supportUrl": "https://github.com/ferris-ai/ferris-mcp#support",
   "privacyPolicyUrl": "https://tryferris.ai/legal/privacy-policy",
+  "termsOfServiceUrl": "https://tryferris.ai/legal/terms-of-service",
   "license": "MIT",
   "keywords": [
     "ferris",

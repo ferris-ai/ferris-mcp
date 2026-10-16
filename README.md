@@ -222,6 +222,13 @@ ferris-mcp-plugins/
 └── README.md
 ```
 
+## Support
+
+Email support@tryferris.ai for help with the plugin, the MCP server or your Ferris account. To report a problem with this repository, open an issue on GitHub.
+
+- Privacy policy: https://tryferris.ai/legal/privacy-policy
+- Terms of service: https://tryferris.ai/legal/terms-of-service
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
