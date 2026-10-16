@@ -7,6 +7,7 @@
     "name": "Ferris AI"
   },
   "homepage": "https://tryferris.app",
+  "repository": "https://github.com/ferris-ai/ferris-mcp",
   "license": "MIT",
   "keywords": [
     "ferris",
