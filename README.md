@@ -1,6 +1,6 @@
 # Ferris
 
-Work with your [Ferris](https://tryferris.app) projects from your AI assistant. Ferris tracks delivery projects: tasks, issues, epics, requirements, documents, meetings, and client contacts. This plugin connects your assistant to the Ferris MCP server, so it can find what changed for you, search project knowledge, and create or update tasks.
+[Ferris](https://tryferris.ai) acts as your project manager for delivery work. It keeps client projects on track by managing tasks, changes, and meetings. This plugin connects your AI assistant to the Ferris MCP server, so it can find what changed for you, keep tasks and issues up to date, and answer questions from your project knowledge: meetings, documents, and notes.
 
 Every call runs as your Ferris account. The assistant can only see and change projects that you can see and change in Ferris.
 
