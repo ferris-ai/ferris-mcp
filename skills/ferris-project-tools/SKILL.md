@@ -91,10 +91,12 @@ Use Ferris how-to facts in your answer without citing them, and do not mention t
 | `search_tasks` | `project_id`, `query` | `status`, `epic_id`, `priority`, `assigned_actor_id`, `limit`, `offset` |
 | `get_task` | `project_id`, `task_id` | -- |
 | `create_task` | `project_id`, `title` | `status`, `description`, `priority`, `epic_id`, `assignees`, `estimated_days`, `due_date`, `start_date`, `portal_task_state`, `kind` |
-| `update_task` | `project_id`, `task_id` | `title`, `description`, `status`, `priority`, `epic_id`, `assignee_ids`, `assignees`, `estimated_days`, `due_date`, `start_date`, `resolution`, `portal_task_state` |
-| `cancel_task` | `project_id`, `task_id` | -- |
+| `update_task` | `project_id`, `task_id` | `title`, `description`, `status`, `priority`, `epic_id`, `assignee_ids`, `assignees`, `estimated_days`, `due_date`, `start_date`, `resolution`, `reason`, `portal_task_state` |
+| `cancel_task` | `project_id`, `task_id`, `reason` | -- |
 | `list_issues` | `project_id` | `status`, `limit`, `offset` |
 | `get_issue` | `project_id`, `issue_id` | -- |
+| `update_issue` | `project_id`, `issue_id` | `title`, `description`, `status`, `priority`, `epic_id`, `assignee_ids`, `assignees`, `estimated_days`, `due_date`, `start_date`, `reason` |
+| `resolve_issue` | `project_id`, `issue_id`, `resolution` | -- |
 | `list_task_attachments` | `project_id`, `task_id` | -- |
 | `get_attachment_download_url` | `project_id`, `task_id`, `attachment_id` | `expires_in_minutes` |
 

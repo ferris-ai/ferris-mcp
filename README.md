@@ -122,10 +122,12 @@ Tools marked **Write (destructive)** delete, cancel, remove, overwrite, or send 
 | `search_tasks` | Read | Search a project's board tasks by keyword in their title and description. |
 | `get_task` | Read | Get details for a single task including assignees. |
 | `create_task` | Write | Create a board task on a project. |
-| `update_task` | Write (destructive) | Change a task. |
-| `cancel_task` | Write (destructive) | Cancel a task. It stays in Ferris with status `cancelled`. |
+| `update_task` | Write (destructive) | Change a task. To complete it, set status `completed` with a `resolution`; to cancel it, set status `cancelled` with a `reason`. |
+| `cancel_task` | Write (destructive) | Cancel a task with a reason. It stays in Ferris with status `cancelled`, and the reason is stored as its close reason. |
 | `list_issues` | Read | List issue tasks for a project. |
-| `get_issue` | Read | One issue. |
+| `get_issue` | Read | One issue, with its close reason when it is closed. |
+| `update_issue` | Write (destructive) | Change an issue's title, description, priority, assignees, dates or status. To cancel it, set status `cancelled` with a `reason`. |
+| `resolve_issue` | Write (destructive) | Complete an issue with its resolution. The resolution is stored as its close reason and pinned as a comment. |
 | `list_task_attachments` | Read | List a task's attachments: reference files, drafts, and published deliverables. |
 | `get_attachment_download_url` | Read | Get a short-lived download link for one task attachment. |
 
