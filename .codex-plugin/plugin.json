@@ -1,6 +1,6 @@
 {
   "name": "ferris",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Ferris acts as your project manager for delivery work, managing tasks, changes, and meetings to keep you on track.",
   "author": {
     "name": "Ferris AI",
@@ -19,7 +19,7 @@
     "search"
   ],
   "skills": "./skills/",
-  "mcpServers": "./.mcp.json",
+  "apps": "./.app.json",
   "interface": {
     "displayName": "Ferris",
     "shortDescription": "Your delivery project manager",

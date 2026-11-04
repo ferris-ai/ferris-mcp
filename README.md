@@ -216,8 +216,11 @@ ferris-mcp-plugins/
 │   │   └── SKILL.md               # Tool guidance and workflows
 │   └── whats-next/
 │       └── SKILL.md               # /ferris:whats-next
-├── .mcp.json                      # MCP server config (Claude Code, Codex)
+├── .app.json                      # Published Ferris app reference (Codex)
+├── .mcp.json                      # MCP server config (Claude Code)
 ├── mcp.json                       # MCP server config (Cursor)
+├── scripts/
+│   └── build-openai-zip.sh        # Builds the OpenAI directory ZIP (no .app.json)
 ├── assets/
 │   └── logo.svg
 ├── LICENSE
