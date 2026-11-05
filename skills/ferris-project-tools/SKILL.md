@@ -38,7 +38,7 @@ Do not use `search_software_context` for what happened on an engagement. Do not 
 - List tools page with `limit` and `offset`. When a response has `has_more: true`, call again with a higher `offset`.
 - `assignees` are objects with `actor_id` (from `list_project_actors`) and a RACI `raci_role`: `responsible`, `accountable`, `consulted`, or `informed`. Sending `assignees` replaces the whole set.
 - A task has one assignee, its `responsible`: the person who does the step, or the client contact who has to answer or act. Put who signs off, gives input or is kept informed on the task's epic (`update_epic`), not on the task. `list_epics` returns each epic's `assignees`. An older task may still list other letters: send them back to keep them.
-- A client's sign-off or decision is its own task with the client contact as `responsible` and `action_type: "client_review"`. Leave its `estimated_days` empty.
+- A client's sign-off or decision is its own task with the client contact as `responsible`. Leave its `estimated_days` empty.
 
 Task statuses: `backlog`, `pending`, `in_progress`, `review`, `blocked`, `completed`, `cancelled`. Priorities: `critical`, `high`, `medium`, `low`.
 
