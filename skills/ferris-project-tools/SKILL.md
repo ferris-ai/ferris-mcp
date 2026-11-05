@@ -36,7 +36,9 @@ Do not use `search_software_context` for what happened on an engagement. Do not 
 - A tool refuses inputs it does not list. Send only the inputs in the tables below.
 - Ids are UUIDs. A task number like `97` is not a `task_id`; get the id from `list_tasks` or `search_tasks`.
 - List tools page with `limit` and `offset`. When a response has `has_more: true`, call again with a higher `offset`.
-- Task and epic `assignees` are objects with `actor_id` (from `list_project_actors`) and a RACI `raci_role`: `responsible`, `accountable`, `consulted`, or `informed`. Sending `assignees` replaces the whole set.
+- `assignees` are objects with `actor_id` (from `list_project_actors`) and a RACI `raci_role`: `responsible`, `accountable`, `consulted`, or `informed`. Sending `assignees` replaces the whole set.
+- A task has one assignee, its `responsible`: the person who does the step, or the client contact who has to answer or act. Put who signs off, gives input or is kept informed on the task's epic (`update_epic`), not on the task. `list_epics` returns each epic's `assignees`. An older task may still list other letters: send them back to keep them.
+- A client's sign-off or decision is its own task with the client contact as `responsible` and `action_type: "client_review"`. Leave its `estimated_days` empty.
 
 Task statuses: `backlog`, `pending`, `in_progress`, `review`, `blocked`, `completed`, `cancelled`. Priorities: `critical`, `high`, `medium`, `low`.
 
