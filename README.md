@@ -121,6 +121,7 @@ Tools marked **Write (destructive)** delete, cancel, remove, overwrite, or send 
 | `list_tasks` | Read | List tasks on a project, filtered by status, epic, assignee, or kind (general, issue, or administrative). |
 | `search_tasks` | Read | Search a project's board tasks by keyword in their title and description. |
 | `get_task` | Read | Get details for a single task including assignees. |
+| `get_task_requests` | Read | What a task asked a client, round by round, and their answers. |
 | `create_task` | Write | Create a board task on a project. |
 | `update_task` | Write (destructive) | Change a task. To complete it, set status `completed` with a `resolution`; to cancel it, set status `cancelled` with a `reason`. |
 | `cancel_task` | Write (destructive) | Cancel a task with a reason. It stays in Ferris with status `cancelled`, and the reason is stored as its close reason. |
