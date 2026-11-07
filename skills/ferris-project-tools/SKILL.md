@@ -92,6 +92,7 @@ Use Ferris how-to facts in your answer without citing them, and do not mention t
 | `list_tasks` | `project_id` | `kind`, `status`, `epic_id`, `assigned_actor_id`, `mentioned_actor_id`, `limit`, `offset` |
 | `search_tasks` | `project_id`, `query` | `status`, `epic_id`, `priority`, `assigned_actor_id`, `limit`, `offset` |
 | `get_task` | `project_id`, `task_id` | -- |
+| `get_task_requests` | `project_id`, `task_id` | -- |
 | `create_task` | `project_id`, `title` | `status`, `description`, `priority`, `epic_id`, `assignees`, `estimated_days`, `due_date`, `start_date`, `portal_task_state`, `kind` |
 | `update_task` | `project_id`, `task_id` | `title`, `description`, `status`, `priority`, `epic_id`, `assignee_ids`, `assignees`, `estimated_days`, `due_date`, `start_date`, `resolution`, `reason`, `portal_task_state` |
 | `cancel_task` | `project_id`, `task_id`, `reason` | -- |
