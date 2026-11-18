@@ -1,6 +1,6 @@
 ---
 name: ferris-project-tools
-description: Work with Ferris projects, tasks, issues, epics, requirements, documents, meetings, and client contacts, and search project or Ferris product knowledge. Use when working with client projects, tracking tasks, reviewing documents, searching project context, or answering how Ferris itself works.
+description: Work with Ferris projects, tasks, issues, deliverables, requirements, documents, meetings, and client contacts, and search project or Ferris product knowledge. Use when working with client projects, tracking tasks, reviewing documents, searching project context, or answering how Ferris itself works.
 ---
 
 # Ferris Project Tools
@@ -13,7 +13,7 @@ Use the Ferris MCP tools to find what changed, search project knowledge, and man
 - Searching project knowledge for meetings, decisions, documents, and notes
 - Answering how Ferris itself works (Inbox, Tasks, Chat, client portal, magic links, meetings, knowledge, sync, workflows, agents, integrations) with `search_software_context` and bank `ferris-documentation`
 - Looking up third-party platform docs (Qualtrics, EngineHire, and others) attached to a project
-- Creating, updating, or tracking tasks, issues, epics, and requirements
+- Creating, updating, or tracking tasks, issues, deliverables, and requirements
 - Browsing project documents and their summaries
 - Looking up project members, contacts, and actors for task assignment
 
@@ -37,7 +37,7 @@ Do not use `search_software_context` for what happened on an engagement. Do not 
 - Ids are UUIDs. A task number like `97` is not a `task_id`; get the id from `list_tasks` or `search_tasks`.
 - List tools page with `limit` and `offset`. When a response has `has_more: true`, call again with a higher `offset`.
 - `assignees` are objects with `actor_id` (from `list_project_actors`) and a RACI `raci_role`: `responsible`, `accountable`, `consulted`, or `informed`. Sending `assignees` replaces the whole set.
-- A task has one assignee, its `responsible`: the person who does the step, or the client contact who has to answer or act. Put who signs off, gives input or is kept informed on the task's epic (`update_epic`), not on the task. `list_epics` returns each epic's `assignees`.
+- A task has one assignee, its `responsible`: the person who does the step, or the client contact who has to answer or act. Put who signs off, gives input or is kept informed on the task's deliverable (`update_deliverable`), not on the task. `list_deliverables` returns each deliverable's `assignees`.
 - A client's sign-off or decision is its own task with the client contact as `responsible`. Leave its `estimated_days` empty.
 
 Task statuses: `backlog`, `pending`, `in_progress`, `review`, `blocked`, `completed`, `cancelled`. Priorities: `critical`, `high`, `medium`, `low`.
@@ -89,16 +89,16 @@ Use Ferris how-to facts in your answer without citing them, and do not mention t
 
 | Tool | Required | Optional |
 | ---- | -------- | -------- |
-| `list_tasks` | `project_id` | `kind`, `status`, `epic_id`, `assigned_actor_id`, `mentioned_actor_id`, `limit`, `offset` |
-| `search_tasks` | `project_id`, `query` | `status`, `epic_id`, `priority`, `assigned_actor_id`, `limit`, `offset` |
+| `list_tasks` | `project_id` | `kind`, `status`, `deliverable_id`, `assigned_actor_id`, `mentioned_actor_id`, `limit`, `offset` |
+| `search_tasks` | `project_id`, `query` | `status`, `deliverable_id`, `priority`, `assigned_actor_id`, `limit`, `offset` |
 | `get_task` | `project_id`, `task_id` | -- |
 | `get_task_requests` | `project_id`, `task_id` | -- |
-| `create_task` | `project_id`, `title` | `status`, `description`, `priority`, `epic_id`, `assignees`, `estimated_days`, `due_date`, `start_date`, `portal_task_state`, `kind` |
-| `update_task` | `project_id`, `task_id` | `title`, `description`, `status`, `priority`, `epic_id`, `assignee_ids`, `assignees`, `estimated_days`, `due_date`, `start_date`, `resolution`, `reason`, `portal_task_state` |
+| `create_task` | `project_id`, `title` | `status`, `description`, `priority`, `deliverable_id`, `assignees`, `estimated_days`, `due_date`, `start_date`, `portal_task_state`, `kind` |
+| `update_task` | `project_id`, `task_id` | `title`, `description`, `status`, `priority`, `deliverable_id`, `assignee_ids`, `assignees`, `estimated_days`, `due_date`, `start_date`, `resolution`, `reason`, `portal_task_state` |
 | `cancel_task` | `project_id`, `task_id`, `reason` | -- |
 | `list_issues` | `project_id` | `status`, `limit`, `offset` |
 | `get_issue` | `project_id`, `issue_id` | -- |
-| `update_issue` | `project_id`, `issue_id` | `title`, `description`, `status`, `priority`, `epic_id`, `assignee_ids`, `assignees`, `estimated_days`, `due_date`, `start_date`, `reason` |
+| `update_issue` | `project_id`, `issue_id` | `title`, `description`, `status`, `priority`, `deliverable_id`, `assignee_ids`, `assignees`, `estimated_days`, `due_date`, `start_date`, `reason` |
 | `resolve_issue` | `project_id`, `issue_id`, `resolution` | -- |
 | `list_task_attachments` | `project_id`, `task_id` | -- |
 | `get_attachment_download_url` | `project_id`, `task_id`, `attachment_id` | `expires_in_minutes` |
@@ -112,15 +112,15 @@ Use Ferris how-to facts in your answer without citing them, and do not mention t
 | `update_task_comment` | `project_id`, `comment_id`, `body` | -- |
 | `delete_task_comment` | `project_id`, `comment_id` | -- |
 
-### Epics and requirements
+### Deliverables and requirements
 
 | Tool | Required | Optional |
 | ---- | -------- | -------- |
-| `list_epics` | `project_id` | `status`, `requirement_id`, `limit`, `offset` |
-| `get_epic` | `project_id`, `epic_id` | -- |
-| `create_epic` | `project_id`, `title` | `status`, `description`, `priority`, `requirement_ids`, `start_date`, `due_date`, `assignees` |
-| `update_epic` | `project_id`, `epic_id` | `title`, `description`, `status`, `priority`, `requirement_ids`, `start_date`, `due_date`, `assignees` |
-| `cancel_epic` | `project_id`, `epic_id` | -- |
+| `list_deliverables` | `project_id` | `status`, `requirement_id`, `limit`, `offset` |
+| `get_deliverable` | `project_id`, `deliverable_id` | -- |
+| `create_deliverable` | `project_id`, `title` | `status`, `description`, `priority`, `requirement_ids`, `start_date`, `due_date`, `assignees` |
+| `update_deliverable` | `project_id`, `deliverable_id` | `title`, `description`, `status`, `priority`, `requirement_ids`, `start_date`, `due_date`, `assignees` |
+| `cancel_deliverable` | `project_id`, `deliverable_id` | -- |
 | `list_requirements` | `project_id` | `status`, `uncovered_only`, `limit`, `offset` |
 | `bulk_create_requirements` | `project_id`, `items` | -- |
 | `update_requirement` | `project_id`, `requirement_id` | `title`, `description`, `requirement_type`, `status`, `acceptance_criteria`, `source`, `sort_order`, `assignees` |

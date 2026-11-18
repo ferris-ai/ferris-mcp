@@ -118,7 +118,7 @@ Tools marked **Write (destructive)** delete, cancel, remove, overwrite, or send 
 
 | Tool | Access | What it does |
 | ---- | ------ | ------------ |
-| `list_tasks` | Read | List tasks on a project, filtered by status, epic, assignee, or kind (general, issue, or administrative). |
+| `list_tasks` | Read | List tasks on a project, filtered by status, deliverable, assignee, or kind (general, issue, or administrative). |
 | `search_tasks` | Read | Search a project's board tasks by keyword in their title and description. |
 | `get_task` | Read | Get details for a single task including assignees. |
 | `get_task_requests` | Read | What a task asked a client, round by round, and their answers. |
@@ -141,19 +141,19 @@ Tools marked **Write (destructive)** delete, cancel, remove, overwrite, or send 
 | `update_task_comment` | Write (destructive) | Edit the body of a note comment you authored. |
 | `delete_task_comment` | Write (destructive) | Delete a note comment you authored, including its @-mentions. |
 
-### Epics and requirements
+### Deliverables and requirements
 
 | Tool | Access | What it does |
 | ---- | ------ | ------------ |
-| `list_epics` | Read | Epics (deliverables) on a project, each with the requirement_ids it satisfies. |
-| `get_epic` | Read | Get one epic on a project, with the requirement_ids it satisfies. |
-| `create_epic` | Write | Create an epic (a deliverable) on a project. |
-| `update_epic` | Write (destructive) | Change an epic. |
-| `cancel_epic` | Write (destructive) | Cancel an epic. Its tasks stay and lose the epic link. |
+| `list_deliverables` | Read | Deliverables on a project, each with the requirement_ids it satisfies. |
+| `get_deliverable` | Read | Get one deliverable on a project, with the requirement_ids it satisfies. |
+| `create_deliverable` | Write | Create a deliverable on a project. |
+| `update_deliverable` | Write (destructive) | Change a deliverable. |
+| `cancel_deliverable` | Write (destructive) | Cancel a deliverable. Its tasks stay and lose the deliverable link. |
 | `list_requirements` | Read | List the project's requirements: the conditions the delivered result must meet. |
 | `bulk_create_requirements` | Write | Create requirements on a project (1-50). |
 | `update_requirement` | Write (destructive) | Change a requirement. |
-| `delete_requirement` | Write (destructive) | Delete a requirement and its epic links. |
+| `delete_requirement` | Write (destructive) | Delete a requirement and its deliverable links. |
 
 ### Documents and search
 
