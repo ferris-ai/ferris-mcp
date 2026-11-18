@@ -220,8 +220,6 @@ ferris-mcp-plugins/
 ├── .app.json                      # Published Ferris app reference (Codex)
 ├── .mcp.json                      # MCP server config (Claude Code)
 ├── mcp.json                       # MCP server config (Cursor)
-├── scripts/
-│   └── build-openai-zip.sh        # Builds the OpenAI directory ZIP (no .app.json)
 ├── assets/
 │   └── logo.svg
 ├── LICENSE
